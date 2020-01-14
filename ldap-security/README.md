@@ -2,7 +2,7 @@
  Please follow below steps to start with ldap security using ELK stack
  
  Pre-requisites :
- 1. An OpenLDAP account or An AWS account for setting up OpenLDAP
+ 1. An OpenLDAP setup or An AWS account for setting up OpenLDAP
  2. Elasticsearch 7.4.2
  3. Kibana 7.4.2
  
