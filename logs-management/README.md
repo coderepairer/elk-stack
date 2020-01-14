@@ -18,7 +18,7 @@ Together, these open source products are most commonly used in log analysis in I
 
 File-beat is installed as a shipper on each machine to collect all logs from each m/c and ship them to logstash for processing. Logstash collects logs from file-beat shippers, parses logs, apply filters & transformations, masks confidential data and create respective indexes in elasticsearch. Elasticsearch stores the information as indexes for later search queries. Kibana then presents the elasticsearch data in visualizations/dashboards that provide actionable insights into one’s environment and allow automatic reports generation.
 
-![Technology Used](https://github.com/coderepairer/elk-stack/blob/master/logs-management/images/tech.png?raw=true)
+![Technology Used](https://github.com/coderepairer/elk-stack/blob/master/logs-management/images/tech.PNG?raw=true)
 
 ## Pre-requisites
 
@@ -30,7 +30,7 @@ File-beat is installed as a shipper on each machine to collect all logs from eac
 *	Logstash 2.4.0
 
 ### AWS Specifications
-![AWS Specifications](https://github.com/coderepairer/elk-stack/blob/master/logs-management/images/aws.png?raw=true)
+![AWS Specifications](https://github.com/coderepairer/elk-stack/blob/master/logs-management/images/aws.PNG?raw=true)
 
 ## Technical Design
 ![Technical Design](https://github.com/coderepairer/elk-stack/blob/master/logs-management/images/design.png?raw=true)
@@ -86,8 +86,11 @@ PRIVATE IP: 172.31.2.50
 Change of /etc/hosts/  on all nodes to use node names instead of IPs
 
 **2.** Creation of directory structure on all nodes and grant them write permissions. 
+
 `sudo mkdir -p /var/log/hackathon++/applogs /var/log/hackathon++/auditlogs /var/log/hackathon++/tracelogs /var/log/hackathon++/schedlogs`
+
 `sudo chmod 777 -R /var/log/hackathon++/`
+
 `tree /var/log/hackathon++/`
 /var/log/hackathon++/
 ├── applogs
@@ -116,27 +119,34 @@ Change of /etc/hosts/  on all nodes to use node names instead of IPs
 - Install of filebeat 
 - Edit filebeat.yml for paths location & logstash config (logs-collector:5044) 
 - Start filebeat.yml daemon 
+
 `sudo chown root /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml`
+
 `sudo /opt/filebeat-5.5.0-linux-x86_64/filebeat -e -c /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml &>> ~/shipper.log &`
 
 ##### Node 2 :
 - Install of filebeat 
 - Edit filebeat.yml for paths location & logstash config (logs-collector:5045) 
 - Start filebeat.yml daemon 
+
 `sudo chown root /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml`
+
 `sudo /opt/filebeat-5.5.0-linux-x86_64/filebeat -e -c /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml &>> ~/shipper.log &`
 
 ##### Node 3 :
 - Install of filebeat 
 - Edit filebeat.yml for paths location & logstash config (logs-collector:5046) 
 - Start filebeat.yml daemon 
+
 `sudo chown root /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml`
+
 `sudo /opt/filebeat-5.5.0-linux-x86_64/filebeat -e -c /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml &>> ~/shipper.log &`
 
 **5.** Logstash setup
 - Install Logstash on logs-collector 
 - Copy logstash.conf
 - Start logstash daemon [DONE]
+
 `sudo /opt/logstash-2.4.0/bin/logstash -f /opt/logstash-2.4.0/logstash-hackathon++.conf &>> ~/logstash.log & `
 
 **6.** Create a domain using AWS Elastic search Service. It will create Elastic search server Kibana server with url of each.
