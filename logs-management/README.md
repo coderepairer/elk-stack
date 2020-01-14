@@ -47,12 +47,9 @@ On Node-1, Node-2 & Node-3 instances a logs-shipper (File beat client) is instal
 **1. Logs shipper:**  It is a File beat client installed on each logs source machine from where logs need to be shipped. filebeat.yml configuration file of log shipper is used for defining Shipper properties and target source
  
 **2. Logs collector:** It is an AWS EC2 instance with logstash installed. It is first step of Logstash pipeline. Logstash input plugins in  logstash.conf config file listens on different ports of logs shipper and takes logs as input.
-![Logstash](https://github.com/coderepairer/elk-stack/blob/master/logs-management/images/logstash.png?raw=true)
+![Logstash](https://github.com/coderepairer/elk-stack/blob/master/logs-management/images/logstash.PNG?raw=true)
 
 **3. Logs parser:** It is second step of logstash pipeline. It parses & transforms Input logs as per the filters written in logstash config file logstash.conf .
-![Logstash](https://github.com/coderepairer/elk-stack/blob/master/logs-management/images/logstash1.png?raw=true)
-![Logstash](https://github.com/coderepairer/elk-stack/blob/master/logs-management/images/logstash2.png?raw=true)
-![Logstash](https://github.com/coderepairer/elk-stack/blob/master/logs-management/images/logstash3.png?raw=true)
 
    MSISDN masking: It is a part of Logs parser component and masks every MSISDN in input message matching with pattern 38067[0-9]{7} where first 5 digits are 38067 followed by 7 any random digits within range of 9 to 9.
  ![Data masking](https://github.com/coderepairer/elk-stack/blob/master/logs-management/images/msisdn.png?raw=true)
@@ -144,7 +141,7 @@ Change of /etc/hosts/  on all nodes to use node names instead of IPs
 
 **5.** Logstash setup
 - Install Logstash on logs-collector 
-- Copy logstash.conf
+- Copy logstash.conf 
 - Start logstash daemon [DONE]
 
 `sudo /opt/logstash-2.4.0/bin/logstash -f /opt/logstash-2.4.0/logstash-hackathon++.conf &>> ~/logstash.log & `
