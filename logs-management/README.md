@@ -62,8 +62,6 @@ On Node-1, Node-2 & Node-3 instances a logs-shipper (File beat client) is instal
   
   
 ## Setup Instructions 
-**1. 
-
 **1.** To start with 4 nodes node-1,node-2, node-3 & logs-collector need to be setup in AWS
 ##### Node 1 
 PUBLIC DNS: ec2-13-127-40-166.ap-south-1.compute.amazonaws.com
@@ -88,9 +86,9 @@ PRIVATE IP: 172.31.2.50
 Change of /etc/hosts/  on all nodes to use node names instead of IPs
 
 **2.** Creation of directory structure on all nodes and grant them write permissions. 
-`sudo mkdir -p /var/log/hackathon++/applogs /var/log/hackathon++/auditlogs /var/log/hackathon++/tracelogs /var/log/hackathon++/schedlogs
-sudo chmod 777 -R /var/log/hackathon++/
-tree /var/log/hackathon++/`
+`sudo mkdir -p /var/log/hackathon++/applogs /var/log/hackathon++/auditlogs /var/log/hackathon++/tracelogs /var/log/hackathon++/schedlogs`
+`sudo chmod 777 -R /var/log/hackathon++/`
+`tree /var/log/hackathon++/`
 /var/log/hackathon++/
 ├── applogs
 ├── auditlogs
@@ -99,44 +97,41 @@ tree /var/log/hackathon++/`
 
 **3.** Copy generate-logs.sh script to automatically generate sample log files in bulk.
 ##### Scheduled Logs
-2017-07-27T11:36:02.535+0300 [PmAggregator] INFO  c.e.bss.ms.scheduler.util.MsvLogger ActivityHistory: SLM={"status":"FINISHED","hostName":"csua1-msv1","activityId":"PMAGG-DEL-SHORT","activityName":"PmAggregator","startTime":"2017-07-27 11:35:02.398","endTime":"2017-07-27 11:36:02.528","activityType":"shell","runScope":"global","startedBy":"system","exitValue":0}/=SLM
-2017-10-11T11:16:13.039+0300 [PmAggregator] INFO  c.e.bss.ms.scheduler.util.MsvLogger ActivityHistory: SLM={"status":"FINISHED" "hostName":"csua1-msv1" "activityId":"PMAGG-DEL-SHORT" "activityName":"PmAggregator" "startTime":"2017-10-11 11:15:12.899" "endTime":"2017-10-11 11:16:13.033" "activityType":"shell" "runScope":"global" "startedBy":"system" "exitValue":0}/=SLM"
+###### 2017-07-27T11:36:02.535+0300 [PmAggregator] INFO  c.e.bss.ms.scheduler.util.MsvLogger ActivityHistory: SLM={"status":"FINISHED","hostName":"csua1-msv1","activityId":"PMAGG-DEL-SHORT","activityName":"PmAggregator","startTime":"2017-07-27 11:35:02.398","endTime":"2017-07-27 11:36:02.528","activityType":"shell","runScope":"global","startedBy":"system","exitValue":0}/=SLM
+
 
 ##### Audit Logs
-type=USER_ACCT msg=audit(1470863005.114:1393400): use pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_:ftpd_t:s0-s0:c0.c1023 msg='op=PAM:accounting acct="msvsftpus" exe="/us/sbin/vsftpd" hostname=csua1-msv1.m.eclab.local addr=10.40.1.132 teminal=ftp res=success'
-type=USER_ACCT msg=audit(1470863005.114:1393400): use pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_:ftpd_t:s0-s0:c0.c1023 msg='op=PAM:accounting acct="msvsftpus" exe="/us/sbin/vsftpd" hostname=csua1-msv1.m.eclab.local addr=10.40.1.132 teminal=ftp res=success'
-type=CRED_ACQ msg=audit(1470863005.114:1393401): use pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_:ftpd_t:s0-s0:c0.c1023 msg='op=PAM:setced acct="msvsftpus" exe="/us/sbin/vsftpd" hostname=csua1-msv1.m.eclab.local addr=10.40.1.132 teminal=ftp res=success'
+###### type=USER_ACCT msg=audit(1470863005.114:1393400): use pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_:ftpd_t:s0-s0:c0.c1023 msg='op=PAM:accounting acct="msvsftpus" exe="/us/sbin/vsftpd" hostname=csua1-msv1.m.eclab.local addr=10.40.1.132 teminal=ftp res=success'
 
 ##### Trace Logs
-Wed Jul 05 2017,15:52:57:888	cha	chaaccess1	/var/opt/log/cha/trace/cha_CHA0000000013_access-chaaccess1.dbss.local-00000015_380670000052_20170705T155257.log		
-Message: 2017-07-05T15:52:57.888+03:00 - SLM={"TraceId": "CHA0000000013", "SubComponent": "access", "Hostname": "chaaccess1.dbss.local", "SequenceNo": "00000015", "MSISDN": "380670000052"}/=SLM
-15:52:57.888 Tracing the execution of runtime flow CHA-OFL-BX
+###### Wed Jul 05 2017,15:52:57:888	cha	chaaccess1	/var/opt/log/cha/trace/cha_CHA0000000013_access-chaaccess1.dbss.local-00000015_380670000052_20170705T155257.log		
+
 
 ##### Application Logs
-2017-10-11T11:10:41.662+0300 | ERROR | pool-51-thread-1 | c.e.b.r.c.a.p.o.s.i.i.SftpImpl | sftpstack.impl.internal.SftpImpl 383 | 239 - com.ericsson.bss.rm.charging.access.plugins.offlinestack.sftpstack.impl - 1.16.0 | raising alarm SFTP_CONNECTION_FAILED[ Unable to connect the configured MM]
-2017-10-11T11:10:41.662+0300 | WARN | pool-51-thread-1 | b.r.c.a.p.o.i.i.OfflineStackImpl | nal.OfflineStackImpl$FileChooser 1300 | 229 - com.ericsson.bss.rm.charging.access.plugins.offlinestack.impl - 1.16.0 | Error connecting to server or checking directory in FileChooser
+###### 2017-10-11T11:10:41.662+0300 | ERROR | pool-51-thread-1 | c.e.b.r.c.a.p.o.s.i.i.SftpImpl | sftpstack.impl.internal.SftpImpl 383 | 239 - com.ericsson.bss.rm.charging.access.plugins.offlinestack.sftpstack.impl - 1.16.0 | raising alarm SFTP_CONNECTION_FAILED[ Unable to connect the configured MM]
+
 
 **4.** Filebeat setup
 ##### Node 1 :
 - Install of filebeat 
 - Edit filebeat.yml for paths location & logstash config (logs-collector:5044) 
 - Start filebeat.yml daemon 
-`sudo chown root /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml
-sudo /opt/filebeat-5.5.0-linux-x86_64/filebeat -e -c /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml &>> ~/shipper.log &`
+`sudo chown root /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml`
+`sudo /opt/filebeat-5.5.0-linux-x86_64/filebeat -e -c /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml &>> ~/shipper.log &`
 
 ##### Node 2 :
 - Install of filebeat 
 - Edit filebeat.yml for paths location & logstash config (logs-collector:5045) 
 - Start filebeat.yml daemon 
-`sudo chown root /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml
-sudo /opt/filebeat-5.5.0-linux-x86_64/filebeat -e -c /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml &>> ~/shipper.log &`
+`sudo chown root /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml`
+`sudo /opt/filebeat-5.5.0-linux-x86_64/filebeat -e -c /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml &>> ~/shipper.log &`
 
 ##### Node 3 :
 - Install of filebeat 
 - Edit filebeat.yml for paths location & logstash config (logs-collector:5046) 
 - Start filebeat.yml daemon 
-`sudo chown root /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml
-sudo /opt/filebeat-5.5.0-linux-x86_64/filebeat -e -c /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml &>> ~/shipper.log &`
+`sudo chown root /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml`
+`sudo /opt/filebeat-5.5.0-linux-x86_64/filebeat -e -c /opt/filebeat-5.5.0-linux-x86_64/filebeat.yml &>> ~/shipper.log &`
 
 **5.** Logstash setup
 - Install Logstash on logs-collector 
