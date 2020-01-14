@@ -61,14 +61,14 @@ On Node-1, Node-2 & Node-3 instances a logs-shipper (File beat client) is instal
 ## Setup Instructions 
 **1.** To start with 4 nodes node-1,node-2, node-3 & logs-collector need to be setup in AWS
 ##### Node 1 
-PUBLIC DNS: ec2-13-127-40-166.ap-south-1.compute.amazonaws.com
-PUBLIC IP: 13.127.40.166
+PUBLIC DNS: ec2-13-127-40-166.ap-south-1.compute.amazonaws.com \
+PUBLIC IP: 13.127.40.166 \
 PRIVATE IP: 172.31.8.173
 
 ##### Node 2 
 PUBLIC DNS: ec2-52-66-139-10.ap-south-1.compute.amazonaws.com \
 PUBLIC IP: 52.66.139.10 \
-PRIVATE IP: 172.31.6.181 \
+PRIVATE IP: 172.31.6.181 
 
 ##### Node 3
 PUBLIC DNS: ec2-52-66-71-93.ap-south-1.compute.amazonaws.com \
