@@ -18,23 +18,28 @@
      **developers** (users : kapil, anil)
      **users** (users : alice, george,lisa)
      
+
 **2.** Add following entry in ELK **config/role_mapping.yml**
 ![Role Mapping](https://github.com/coderepairer/elk-stack/blob/master/ldap-security/images/role-mapping.png?raw=true)
  
  This maps LDAP DN groups with ELK roles created in Step2. Instead of file, these roles can also be created using ELK Security API. In that case, mapping will be added in **.security** index. 
 
 
+
 **3.** Enabled ELK stack security feature "x-pack" add following configurarion in **config/elasticsearch.yml** and restart Elasticsearch
   
 ![Elasticsearch config](https://github.com/coderepairer/elk-stack/blob/master/ldap-security/images/elasticsearch.jpg?raw=true)
 
+
 **4.**	Disabled all ELK reserved users(except superuser : **elastic** ) using [Disable Users API](https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-disable-user.html). Now all users to access the ELK portals exist only in LDAP
+
 
 **5.** Login to Kibana -> Management -> Security -> Roles portal using superuser: **elastic** and create 2 roles(developers, users) and add relevant privileges from Kibana UI. 
 For e.g. **developers** have read/write permissions and access "Dev Tools" and **users** have read-only permissions and no Dev console.
 ###### Note: There are no "users" created in Kibana. Only 2 new roles to map ELK privileges.
 
-**6** Check the Kibana view for users of both roles
+
+**6.** Check the Kibana view for users of both roles
   
   **a)** user : anil (role=developers)
   ![Anil Kibana View](https://github.com/coderepairer/elk-stack/blob/master/ldap-security/images/kibana1.jpg?raw=true)
